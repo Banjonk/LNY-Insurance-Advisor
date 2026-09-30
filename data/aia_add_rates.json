@@ -1,0 +1,12 @@
+{
+  "plan_id": "aia_add",
+  "plan_name": "AIA ADD",
+  "rate_unit": 1000,
+  "by_occ_class": true,
+  "rates_by_class": {
+    "1": 2.00,
+    "2": 3.00,
+    "3": 4.00,
+    "4": 5.00
+  }
+}

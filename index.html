@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LNY Insurance Advisor | ตัวแทนประกันชีวิต AIA &amp; วินาศภัยออนไลน์</title>
+    <meta name="description" content="ศูนย์เรดาร์วิเคราะห์ความคุ้มครอง ปรึกษาตัวแทน AIA สังกัดกองทัพเรือ และศูนย์เปรียบเทียบประกันวินาศภัยออนไลน์">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER NAVBAR (2-in-1) ==================== -->
+    <header class="navbar">
+        <div class="nav-container">
+            <!-- ฝั่งซ้าย: โลโก้แบนเนอร์ LNY -->
+            <div class="brand-banner-box">
+                <img src="images/banner-header.png" alt="LNY Insurance Advisor">
+            </div>
+
+            <!-- ตรงกลาง: สโลแกนแปลงร่างเป็นช่อง Search ดักจับความต้องการ -->
+            <div class="smart-search-capsule">
+                <span class="search-glass-icon">🔍</span>
+                <input type="text" 
+                       id="main-search-input" 
+                       placeholder="ศูนย์เรดาร์วิเคราะห์ความคุ้มครอง &amp; บริหารความเสี่ยงครบวงจร" 
+                       autocomplete="off">
+                <button type="button" id="search-clear-btn" onclick="clearMainSearch()">&times;</button>
+                <div id="search-suggest-box" class="search-suggest-dropdown"></div>
+            </div>
+
+            <!-- ฝั่งขวา: อ่านแนวคิด + ตัวแทนฝ่ายขาย AIA -->
+            <div class="nav-actions-right">
+                <button type="button" class="btn-nav-concept" onclick="openPopup('popup-concept')">
+                    💡 <span>อ่านแนวคิด</span>
+                </button>
+
+                <button type="button" class="btn-nav-agent" onclick="openPopup('popup-contact')">
+                    <span class="agent-shield">🛡️</span>
+                    <div class="agent-text-wrap">
+                        <strong>ตัวแทนฝ่ายขาย AIA</strong>
+                        <small>สังกัดกองทัพเรือ • คปภ.</small>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+   <!-- ==================== MAIN DASHBOARD ==================== -->
+    <main class="portal-layout-container">
+        
+        <!-- ซีกขวา/บน: Hero Interactive Slider วนลูป (ย้ายขึ้นมาไว้ด้านบน) -->
+        <section class="slider-stage-75">
+            <div class="slider-wrapper" id="hero-slider-wrapper">
+                
+                <!-- Slide 1: เดินทาง -->
+                <div class="slide-card active" style="background: linear-gradient(135deg, rgba(15,23,42,0.75), rgba(2,132,199,0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80') center/cover;">
+                    <div class="slide-content">
+                        <span class="slide-tag">✈️ ประกันภัยการเดินทาง</span>
+                        <h2>บินลัดฟ้าทั่วโลกอย่างมั่นใจ คุ้มครองตลอด 24 ชม.</h2>
+                        <p>ครอบคลุมค่ารักษาพยาบาลฉุกเฉิน เที่ยวบินล่าช้า กระเป๋าเดินทางสูญหาย ยื่นขอวีซ่าไม่ผ่านยินดีคืนเงิน</p>
+                        <button type="button" class="slide-cta-btn" onclick="openPopup('popup-travel')">เปรียบเทียบแผนเดินทาง MSIG / SCB / AXA ➔</button>
+                    </div>
+                </div>
+
+                <!-- Slide 2: บ้าน & รีไฟแนนซ์ -->
+                <div class="slide-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.75), rgba(16,185,129,0.7)), url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80') center/cover;">
+                    <div class="slide-content">
+                        <span class="slide-tag">🏠 ปกป้องบ้าน &amp; ลดดอกเบี้ย</span>
+                        <h2>ประกันอัคคีภัยที่อยู่อาศัย &amp; สินเชื่อรีไฟแนนซ์บ้าน</h2>
+                        <p>คุ้มครองภัยธรรมชาติ ไฟไหม้ ฟ้าผ่า น้ำท่วม พร้อมดีลลดดอกเบี้ย ผ่อนสบาย จาก LH Bank</p>
+                        <button type="button" class="slide-cta-btn" onclick="openPopup('popup-home')">ดูแผนประกันบ้าน &amp; สินเชื่อรีไฟแนนซ์ ➔</button>
+                    </div>
+                </div>
+
+                <!-- Slide 3: โรคร้าย & มะเร็ง -->
+                <div class="slide-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(225,29,72,0.7)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80') center/cover;">
+                    <div class="slide-content">
+                        <span class="slide-tag">🩺 สุขภาพ &amp; โรคร้ายแรง</span>
+                        <h2>รับมือโรคร้ายอย่างมั่นใจ เจอ จ่าย จบ ไม่ต้องรอ</h2>
+                        <p>ตรวจพบรับเงินก้อนทันที คุ้มครองมะเร็งทุกระยะและกลุ่มโรคร้ายแรง เบี้ยคงที่ สมัครง่ายออนไลน์</p>
+                        <button type="button" class="slide-cta-btn" onclick="openPopup('popup-health')">เลือกแผนคุ้มครองมะเร็ง MSIG / SCB ➔</button>
+                    </div>
+                </div>
+
+                <!-- Slide 4: รถยนต์ & พ.ร.บ. -->
+                <div class="slide-card" style="background: linear-gradient(135deg, rgba(15,23,42,0.8), rgba(14,116,144,0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80') center/cover;">
+                    <div class="slide-content">
+                        <span class="slide-tag">🚗 ประกันรถยนต์ออนไลน์</span>
+                        <h2>เช็กเบี้ยชั้น 1, 2+, 3+ ผ่อน 0% ออก พ.ร.บ. ด่วนทันที</h2>
+                        <p>เปรียบเทียบเบี้ยจากค่ายชั้นนำ Gettgo, SCB, ทิพยประกันภัย, MSIG และ ANC ผ่อนรายเดือน</p>
+                        <button type="button" class="slide-cta-btn" onclick="openPopup('popup-motor')">เช็กเบี้ยรถยนต์ &amp; ผ่อนสบาย ➔</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ปุ่มเลื่อนสไลด์ ซ้าย-ขวา -->
+            <button type="button" class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
+            <button type="button" class="slider-arrow next" onclick="nextSlide()">&#10095;</button>
+
+            <!-- จุดไข่ปลาบอกตำแหน่งสไลด์ -->
+            <div class="slider-dots" id="slider-dots-container">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+            </div>
+        </section>
+
+        <!-- ซีกซ้าย/ล่าง: Quick Services Menu (7 ปุ่มหลัก) -->
+        <aside class="sidebar-menu-25">
+            <div class="menu-title-header">บริการ &amp; เมนูด่วน</div>
+            
+            <button type="button" class="quick-nav-btn btn-aia" onclick="openPopup('popup-aia-catalog')">
+                <span class="btn-icon">📑</span>
+                <div class="btn-text">
+                    <strong>ผังโครงสร้างแบบประกัน AIA</strong>
+                    <small>สัญญาหลัก, สุขภาพ, CI, อุบัติเหตุ</small>
+                </div>
+            </button>
+
+            <button type="button" class="quick-nav-btn btn-aia" onclick="openPopup('popup-aia-plans'); loadInsurancePlans();">
+                <span class="btn-icon">🏢</span>
+                <div class="btn-text">
+                    <strong>คำนวณเบี้ยประกัน AIA</strong>
+                    <small>20Pay Life, Term 5-20 ปี, สิทธิ์ WP</small>
+                </div>
+            </button>
+
+            <button type="button" class="quick-nav-btn btn-aia" onclick="openPopup('popup-faq')">
+                <span class="btn-icon">💡</span>
+                <div class="btn-text">
+                    <strong>ข้อกำหนดสัญญา &amp; FAQ</strong>
+                    <small>ลดหย่อนภาษี, เคลมสินไหม, สิทธิประโยชน์</small>
+                </div>
+            </button>
+
+            <div class="menu-divider"><span>วินาศภัย &amp; ออนไลน์</span></div>
+
+            <button type="button" class="quick-nav-btn" onclick="openPopup('popup-motor')">
+                <span class="btn-icon">🚗</span>
+                <div class="btn-text">
+                    <strong>ประกันรถยนต์ &amp; ต่อ พ.ร.บ.</strong>
+                    <small>เช็กเบี้ยชั้น 1, 2+, 3+ ผ่อน 0%</small>
+                </div>
+            </button>
+
+            <button type="button" class="quick-nav-btn" onclick="openPopup('popup-travel')">
+                <span class="btn-icon">✈️</span>
+                <div class="btn-text">
+                    <strong>ประกันเดินทางต่างประเทศ</strong>
+                    <small>ไฟลท์ดีเลย์ กระเป๋าหาย ยื่นวีซ่าเชงเก้น</small>
+                </div>
+            </button>
+
+            <button type="button" class="quick-nav-btn" onclick="openPopup('popup-home')">
+                <span class="btn-icon">🏠</span>
+                <div class="btn-text">
+                    <strong>ประกันบ้าน &amp; สินเชื่อรีไฟแนนซ์</strong>
+                    <small>อัคคีภัย น้ำท่วม, LH Bank Refinance</small>
+                </div>
+            </button>
+
+            <button type="button" class="quick-nav-btn" onclick="openPopup('popup-health')">
+                <span class="btn-icon">🩺</span>
+                <div class="btn-text">
+                    <strong>ประกันมะเร็ง &amp; โรคร้ายแรง</strong>
+                    <small>เจอจ่ายจบ MSIG Cancer, SCB Protect</small>
+                </div>
+            </button>
+        </aside>
+
+    </main>
+
+    <!-- ==================== POPUP MODALS DIALOGS ==================== -->
+
+    <!-- Popup 0: บทความแนวคิดความคุ้มครอง -->
+    <div id="popup-concept" class="modal-overlay">
+        <div class="modal-window wide-modal" style="max-width: 720px; padding: 22px 26px;">
+            <button class="modal-close" onclick="closePopup('popup-concept')">&times;</button>
+            <h2 style="font-size: 1.25rem; color: #0f172a; margin-bottom: 6px;">💡 แนวคิดการสร้างความมั่นคงให้ครอบครัว</h2>
+            <p class="modal-desc" style="margin-bottom: 14px;">ด้วยต้นทุนที่คุ้มค่าที่สุด... ในวันที่คุณยังมีสิทธิ์เลือก</p>
+            
+            <div class="lead-quote" style="background: #f8fafc; border-left: 4px solid #0284c7; padding: 12px 16px; border-radius: 4px; margin-bottom: 16px;">
+                <p style="margin-bottom: 8px; font-size: 0.9rem;">การทุพพลภาพ การเจ็บป่วยร้ายแรง หรือการจากไปก่อนเวลาอันควร... ไม่มีใครอยากให้เกิดขึ้น แต่หากวันนั้นมาถึงจริง ๆ <strong>"คนข้างหลังของคุณจะอยู่อย่างไร?"</strong></p>
+                <p style="margin: 0; font-size: 0.88rem; color: #475569;">ในวันที่คุณยังมีแรง สุขภาพแข็งแรง การแบ่งเงินส่วนหนึ่งมาสร้างหลักประกัน คือวิธีที่ประหยัดต้นทุนที่สุด ได้เบี้ยถูก คุ้มครองสูง ดีกว่ารอให้ถึงวันที่จำเป็นต้องใช้</p>
+            </div>
+
+            <div class="mini-compare-box">
+                <h3 style="font-size: 0.95rem; margin-bottom: 8px;">ตรรกะหมัดต่อหมัด: เงินสดในบัญชี VS สัญญาความคุ้มครอง (AIA)</h3>
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>มิติความมั่นคง</th>
+                                <th>เก็บออมเงินสดเอง</th>
+                                <th class="highlight-col">สัญญาความคุ้มครอง (AIA)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>เป้าหมาย 500,000 บ.</strong></td>
+                                <td>ต้องทยอยเก็บจนครบเงินต้นจริง</td>
+                                <td class="highlight-col">ล็อกความคุ้มครอง <strong>500,000 บ. ทันทีตั้งแต่วันแรก</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>หากทุพพลภาพ</strong></td>
+                                <td>เงินหยุดงอกเงย เงินเก็บหมดไปกับค่ารักษา</td>
+                                <td class="highlight-col"><strong>สิทธิ์ WP ทำงาน:</strong> AIA จ่ายเบี้ยต่อให้ กองทุนอยู่ครบ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>มรดกคนข้างหลัง</strong></td>
+                                <td>ได้เฉพาะเงินต้นเท่าที่เก็บได้</td>
+                                <td class="highlight-col">รับเงินก้อนเต็มสัญญา ปิดหนี้สินทันที</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div style="margin-top: 18px; text-align: center;">
+                <button class="btn btn-line" onclick="closePopup('popup-concept'); openPopup('popup-contact');" style="padding: 9px 24px; font-size: 0.9rem;">
+                    💬 ปรึกษาการวางแผนความคุ้มครองกับตัวแทน
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup 1: ข้อมูลตัวแทนฝ่ายขาย AIA (กระชับ ไม่ตกขอบจอ) -->
+    <div id="popup-contact" class="modal-overlay">
+        <div class="modal-window text-center" style="max-width: 480px; padding: 18px 20px;">
+            <button class="modal-close" onclick="closePopup('popup-contact')">&times;</button>
+            <h2 style="font-size: 1.15rem; margin-bottom: 4px;">🛡️ ตัวแทนประกันชีวิต AIA ฝ่ายขาย</h2>
+            <p class="modal-desc" style="font-size: 0.8rem; margin-bottom: 12px;">โปร่งใส ตรวจสอบได้จริง ให้คำปรึกษาด้วยตรรกะและข้อเท็จจริงตามหลักเกณฑ์ คปภ.</p>
+            
+            <div class="agent-profile-box" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 12px;">
+                <div style="width: 68px; height: 68px; border-radius: 50%; overflow: hidden; margin: 0 auto 8px auto; border: 2px solid #0284c7; background: #e2e8f0;">
+                    <img src="images/agent-profile.jpg" alt="นายบรรจง กลัดป้อม ตัวแทน AIA" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'68\' height=\'68\' fill=\'%23cbd5e1\' viewBox=\'0 0 24 24\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z\'/></svg>'">
+                </div>
+                <h3 style="margin: 0; color: #0f172a; font-size: 1.05rem;">นายบรรจง กลัดป้อม</h3>
+                <p style="margin: 2px 0 8px 0; font-size: 0.8rem; color: #475569;">
+                    เจ้าหน้าที่สังกัดกองทัพเรือ &bull; ตัวแทนประกันชีวิต เอไอเอ (ประเทศไทย)
+                </p>
+                <div style="font-size: 0.76rem; color: #64748b; line-height: 1.5; background: #ffffff; border-radius: 6px; padding: 6px 10px; border: 1px dashed #cbd5e1; text-align: left;">
+                    <div>สังกัด: <strong>กองทัพเรือ (มีหลักแหล่งตรวจสอบได้)</strong></div>
+                    <div>หน่วยงาน AIA: <strong>หน่วยเนตรทรายทอง</strong></div>
+                    <div>รหัสตัวแทน AIA: <strong>722912</strong></div>
+                    <div>ใบอนุญาตตัวแทน คปภ. เลขที่: <strong>6901016419</strong></div>
+                </div>
+            </div>
+
+           <div class="agent-box">
+    <a href="https://line.me/R/ti/p/@711biaef" target="_blank" class="btn btn-line" style="display: block; padding: 9px 16px; font-size: 0.88rem;">
+        💬 แอดไลน์ส่งตารางคำนวณเบี้ยปรึกษาตัวแทนทันที
+    </a>
+</div>
+        </div>
+    </div>
+
+  <!-- Popup 2: ผังโครงสร้างและคลังโบรชัวร์ AIA ฉบับ Clean Path ตรงตามไฟล์จริง 100% -->
+    <div id="popup-aia-catalog" class="modal-overlay">
+        <div class="modal-window" style="max-width: 800px; width: 95%; max-height: 88vh; display: flex; flex-direction: column; padding: 18px 22px;">
+            <button class="modal-close" onclick="closePopup('popup-aia-catalog')">&times;</button>
+            <h3 style="margin: 0 0 4px 0; font-size: 1.15rem; color: #0f172a;">📑 ผังโครงสร้างและคลังโบรชัวร์แบบประกัน AIA</h3>
+            <p style="font-size: 0.8rem; color: #64748b; margin: 0 0 12px 0;">เลือกหมวดหมู่ 4 เสาหลัก เพื่อเปิดอ่านแผ่นพับรายละเอียดทางการฉบับเต็ม</p>
+
+            <!-- 4 แคปซูลสลับหมวดหมู่ -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+                <button type="button" class="pillar-tab active" onclick="switchCatalogTab(1, this)">🏛️ 1. สัญญาหลัก</button>
+                <button type="button" class="pillar-tab" onclick="switchCatalogTab(2, this)">🏥 2. สุขภาพ &amp; ชดเชย</button>
+                <button type="button" class="pillar-tab" onclick="switchCatalogTab(3, this)">🔬 3. โรคร้ายแรง (CI)</button>
+                <button type="button" class="pillar-tab" onclick="switchCatalogTab(4, this)">🛡️ 4. อุบัติเหตุ &amp; WP</button>
+            </div>
+
+            <!-- กล่องแสดงรายการแผน (Scroll ได้) -->
+            <div id="catalog-content-box" style="flex: 1; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px;">
+                
+                <!-- ==================== เสาที่ 1: สัญญาหลัก (Core Life & สะสมทรัพย์) ==================== -->
+                <div id="pillar-content-1" class="pillar-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 0.82rem; font-weight: bold; color: #0f172a;">คุ้มครองตลอดชีพ &amp; ชั่วระยะเวลา (Life &amp; Term)</span>
+                        <button type="button" style="padding: 2px 8px; font-size: 0.72rem; background: #0284c7; color: #fff; border: none; border-radius: 4px; cursor: pointer;" onclick="closePopup('popup-aia-catalog'); openPopup('popup-aia-plans');">⚡ ไปหน้าคำนวณเบี้ย</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px; margin-bottom: 12px;">
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-20pay-life.pdf', 'โบรชัวร์ AIA 20Pay Life')">📄 AIA 20Pay Life (ตลอดชีพ 20 ปี)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-10-15paylife.pdf', 'โบรชัวร์ AIA 10 &amp; 15 Pay Life')">📄 AIA 10 &amp; 15 Pay Life</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-10-15paylife-old.pdf', 'โบรชัวร์ TH 1015 Pay Life')">📄 AIA Pay Life (10/15 ปี เดิม)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-paylife-plus.pdf', 'โบรชัวร์ AIA Pay Life Plus')">📄 AIA Pay Life Plus</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/1Term_P6.pdf', 'โบรชัวร์ AIA Term')">📄 AIA Term (ชั่วระยะเวลา)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-protection-65.pdf', 'โบรชัวร์ AIA Protection 65')">📄 AIA Protection 65</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-senior-happy.pdf', 'โบรชัวร์ AIA Senior Happy')">📄 AIA Senior Happy (ผู้สูงวัย)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-legacy-prestige.pdf', 'โบรชัวร์ AIA Legacy Prestige')">📄 AIA Legacy Prestige</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-legacy-prestige-plus.pdf', 'โบรชัวร์ AIA Legacy Prestige Plus')">📄 AIA Legacy Prestige Plus</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-legacy-prestige-protection.pdf', 'โบรชัวร์ Legacy Prestige Protection')">📄 AIA Legacy Prestige Protection</button>
+                    </div>
+
+                    <span style="display: block; font-size: 0.82rem; font-weight: bold; color: #0284c7; margin-bottom: 6px;">ออมทรัพย์ &amp; สะสมทรัพย์ (Endowment)</span>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px;">
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-saving-sure.pdf', 'โบรชัวร์ AIA Saving Sure')">📄 AIA Saving Sure (Non Par)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-5pay10.pdf', 'โบรชัวร์ AIA 5Pay10')">📄 AIA 5Pay10 (จ่าย 5 คุ้มครอง 10)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-15pay25.pdf', 'โบรชัวร์ AIA 15Pay25')">📄 AIA Endowment 15Pay25</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-excellent.pdf', 'โบรชัวร์ AIA Excellent')">📄 AIA Excellent (Non Par)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-lifetime-income.pdf', 'โบรชัวร์ AIA Lifetime Income')">📄 AIA Lifetime Income Plus</button>
+                    </div>
+                </div>
+
+                <!-- ==================== เสาที่ 2: สุขภาพ & ค่ารักษา & ชดเชยรายได้ ==================== -->
+                <div id="pillar-content-2" class="pillar-content" style="display: none;">
+                    <span style="display: block; font-size: 0.82rem; font-weight: bold; color: #166534; margin-bottom: 6px;">ค่ารักษาพยาบาล &amp; เหมาจ่าย (Medical Expense)</span>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px; margin-bottom: 12px;">
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-health-happy.pdf', 'โบรชัวร์ AIA Health Happy')">📄 AIA Health Happy (เหมาจ่าย)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-health-happy-kid.pdf', 'โบรชัวร์ AIA Health Happy Kid')">📄 AIA Health Happy - Kid (เด็ก)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-health-starter.pdf', 'โบรชัวร์ AIA Health Starter')">📄 AIA Health Starter (เริ่มต้น)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-health-saver.pdf', 'โบรชัวร์ AIA Health Saver')">📄 AIA Health Saver</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-infinite-care.pdf', 'โบรชัวร์ AIA Infinite Care')">📄 AIA Infinite Care (การรักษาพรีเมียม)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-health-ci-hero.pdf', 'โบรชัวร์ AIA Health CI Hero')">📄 AIA Health CI Hero</button>
+                    </div>
+
+                    <span style="display: block; font-size: 0.82rem; font-weight: bold; color: #15803d; margin-bottom: 6px;">เงินชดเชยรายวัน (Hospital Income)</span>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px;">
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-hb-extra.pdf', 'โบรชัวร์ AIA HB Extra')">📄 AIA HB Extra (ชดเชยรายวันพิเศษ)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-hb.pdf', 'โบรชัวร์ AIA HB')">📄 AIA HB (ชดเชยมาตรฐาน)</button>
+                    </div>
+                </div>
+
+                <!-- ==================== เสาที่ 3: โรคร้ายแรง (Critical Illness) ==================== -->
+                <div id="pillar-content-3" class="pillar-content" style="display: none;">
+                    <span style="display: block; font-size: 0.82rem; font-weight: bold; color: #c2410c; margin-bottom: 6px;">กลุ่มโรคร้ายแรง &amp; มะเร็ง (Critical Illness &amp; Cancer)</span>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px;">
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-ci-plus.pdf', 'โบรชัวร์ AIA CI Plus')">📄 AIA CI Plus (44 โรคร้ายแรง)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-mpci-plus.pdf', 'โบรชัวร์ Multi-Pay CI Plus')">📄 AIA Multi-Pay CI Plus (เคลมซ้ำได้)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-ci-top-up.pdf', 'โบรชัวร์ AIA CI Top Up')">📄 AIA CI Top Up</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-ci-supercare.pdf', 'โบรชัวร์ AIA CI SuperCare')">📄 AIA CI SuperCare (ตลอดชีพ)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-ci-supercare-prestige.pdf', 'โบรชัวร์ CI SuperCare Prestige')">📄 AIA CI SuperCare Prestige</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-ci-procare.pdf', 'โบรชัวร์ AIA CI ProCare')">📄 AIA CI ProCare</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-health-cancer.pdf', 'โบรชัวร์ Health Cancer')">📄 AIA Health Cancer (ประกันมะเร็ง)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-lady-care.pdf', 'โบรชัวร์ Lady Care')">📄 AIA Lady Care &amp; Plus (โรคร้ายสตรี)</button>
+                    </div>
+                </div>
+
+                <!-- ==================== เสาที่ 4: อุบัติเหตุ & WP ==================== -->
+                <div id="pillar-content-4" class="pillar-content" style="display: none;">
+                    <span style="display: block; font-size: 0.82rem; font-weight: bold; color: #1d4ed8; margin-bottom: 6px;">สัญญาอุบัติเหตุ &amp; สิทธิ์ยกเว้นเบี้ยประกัน (Accident &amp; Waiver)</span>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px;">
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-accident.pdf', 'โบรชัวร์ AIA อุบัติเหตุ')">📄 สัญญาอุบัติเหตุ AI / ADD / ADB</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-tpd.pdf', 'โบรชัวร์ AIA TPD')">📄 AIA TPD (ทุพพลภาพสิ้นเชิง)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-wpci.pdf', 'โบรชัวร์ AIA WPCI')">📄 AIA WPCI (ยกเว้นเบี้ยโรคร้าย)</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-vitality-v70.pdf', 'โบรชัวร์ AIA Vitality V70')">📄 AIA Vitality V70</button>
+                        <button type="button" class="btn-doc" onclick="openBrochurePdf('brochures/aia-vitality-v80.pdf', 'โบรชัวร์ AIA Vitality V80')">📄 AIA Vitality V80</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 10px; text-align: center;">
+                <button class="btn btn-line" onclick="closePopup('popup-aia-catalog'); openPopup('popup-contact');" style="width: 100%; padding: 7px; font-size: 0.85rem;">
+                    💬 ปรึกษาและจัดพอร์ตความคุ้มครองกับตัวแทน AIA
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Popup 3: คำนวณเบี้ยประกันชีวิต AIA -->
+    <div id="popup-aia-plans" class="modal-overlay">
+        <div class="modal-window compact-aia-modal" style="overflow-y: hidden;">
+            <button class="modal-close" onclick="closePopup('popup-aia-plans')">&times;</button>
+            
+            <div class="aia-modal-header-brand">
+                <div class="brand-logo-crop"></div>
+                <h3 class="compact-modal-title">คำนวณเบี้ยประกันชีวิต AIA</h3>
+            </div>
+
+            <div id="aia-alert-notice" class="notice-alert-compact" style="margin-bottom: 6px; padding: 4px 8px; font-size: 11px;">
+                <span>💡 <strong>ตรรกะสำคัญ:</strong> แบบ Term เบี้ยต่ำเน้นล็อกช่วงสร้างตัว ส่วน 20Pay Life จ่าย 20 ปี ล็อกคุ้มครองยาวนานถึงอายุ 99 ปี</span>
+                <button type="button" class="btn-close-alert" onclick="document.getElementById('aia-alert-notice').style.display='none'">&times;</button>
+            </div>
+
+            <div class="calculator-container-box">
+                <div class="field-plan-select">
+                <!-- ============================================================ -->
+<!-- 1. ส่วนเลือกประเภทและหมวดหมู่ประกันภัย (Category Filter UI) -->
+<!-- ============================================================ -->
+<div class="category-filter-container" style="margin-bottom: 6px;">
+
+  <!-- แท็บระดับ 1: สัญญาหลัก vs สัญญาเพิ่มเติม -->
+  <div style="display: flex; gap: 8px; margin-bottom: 10px; background: #f1f3f5; padding: 4px; border-radius: 10px;">
+    <button type="button" id="btn-type-main" onclick="onTypeTabClick('main')" 
+      style="flex: 1; padding: 10px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; background: #d32f2f; color: #ffffff; box-shadow: 0 2px 5px rgba(211,47,47,0.3);">
+      🏛️ สัญญาหลัก (Core Life)
+    </button>
+    <button type="button" id="btn-type-rider" onclick="onTypeTabClick('rider')" 
+      style="flex: 1; padding: 10px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s; background: transparent; color: #495057;">
+      🛡️ สัญญาเพิ่มเติม (Riders)
+    </button>
+  </div>
+
+  <!-- แท็บระดับ 2: หมวดย่อยฝั่ง "สัญญาหลัก" -->
+  <div id="subcat-main-group" style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">
+    <button type="button" class="subcat-chip active" onclick="onSubCategoryClick('protection', this)"
+      style="padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #d32f2f; background: #ffebee; color: #d32f2f;">
+      🛡️ ความคุ้มครอง / ตลอดชีพ
+    </button>
+    <button type="button" class="subcat-chip" onclick="onSubCategoryClick('savings', this)"
+      style="padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #ced4da; background: #ffffff; color: #495057;">
+      💰 สะสมทรัพย์ / เกษียณ
+    </button>
+  </div>
+
+ <!-- แท็บระดับ 2: หมวดย่อยฝั่ง "สัญญาเพิ่มเติม" (เริ่มต้นซ่อนไว้) -->
+  <div id="subcat-rider-group" style="display: none; justify-content: center; gap: 4px; flex-wrap: nowrap; margin-bottom: 6px; width: 100%; overflow-x: auto;">
+    <button type="button" class="subcat-chip active" onclick="onSubCategoryClick('medical', this)"
+      style="padding: 4px 7px; border-radius: 16px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid #d32f2f; background: #ffebee; color: #d32f2f; white-space: nowrap;">
+      🏥 ค่ารักษาพยาบาล
+    </button>
+    <button type="button" class="subcat-chip" onclick="onSubCategoryClick('ci', this)"
+      style="padding: 4px 7px; border-radius: 16px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid #ced4da; background: #ffffff; color: #495057; white-space: nowrap;">
+      🧬 โรคร้ายแรง (CI)
+    </button>
+    <button type="button" class="subcat-chip" onclick="onSubCategoryClick('hb', this)"
+      style="padding: 4px 7px; border-radius: 16px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid #ced4da; background: #ffffff; color: #495057; white-space: nowrap;">
+      💵 ชดเชยรายได้ (HB)
+    </button>
+    <button type="button" class="subcat-chip" onclick="onSubCategoryClick('accident', this)"
+      style="padding: 4px 7px; border-radius: 16px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid #ced4da; background: #ffffff; color: #495057; white-space: nowrap;">
+      ⚠️ อุบัติเหตุ/ทุพพลภาพ
+    </button>
+  </div>
+ </div>
+<!-- ============================================================ -->
+                    <label for="aia-plan-select">เลือกแบบสัญญาประกันภัย:</label>
+                    <select id="aia-plan-select" class="calc-input-ctrl" onchange="onPlanChanged(); calculatePremium();">
+                        <option value="">-- กำลังโหลดรายการแบบประกัน... --</option>
+                    </select>
+                </div>
+
+                <div class="calc-split-row">
+                    <div class="calc-inputs-left">
+                        <div class="input-twin-cols">
+                            <div class="twin-col">
+                                <label for="aia-gender-select">เพศ:</label>
+                                <select id="aia-gender-select" class="calc-input-ctrl" onchange="calculatePremium()">
+                                    <option value="M">ชาย (Male)</option>
+                                    <option value="F">หญิง (Female)</option>
+                                </select>
+                            </div>
+                            <!-- 1. ช่องกรอกอายุเดิม (ใส่ id="ageGroup" ครอบไว้เพื่อสั่งซ่อน/โชว์) -->
+                            <div class="twin-col" id="ageGroup">
+                                <label for="aia-age-input">อายุ (ปี):</label>
+                                <input type="number" id="aia-age-input" value="35" min="0" max="70" inputmode="numeric" class="calc-input-ctrl" oninput="calculatePremium()">
+                            </div>
+
+                            <!-- 2. ช่องเลือกขั้นอาชีพ (สไตล์เดียวกับ twin-col เดิม แต่ตั้งซ่อนไว้ก่อน) -->
+                            <div class="twin-col" id="occClassGroup" style="display: none;">
+                                <label for="aia-occ-class">ขั้นอาชีพ:</label>
+                                <select id="aia-occ-class" class="calc-input-ctrl" onchange="calculatePremium()">
+                                    <option value="1" selected>ขั้น 1 (ออฟฟิศ/ในร่ม ไม่เสี่ยง)</option>
+                                    <option value="2">ขั้น 2 (เดินทาง/ตรวจงานนอกสถานที่)</option>
+                                    <option value="3">ขั้น 3 (ใช้แรงงาน/เสี่ยงภัย/ขับรถ)</option>
+                                    <option value="4">ขั้น 4 (เสี่ยงภัยสูงมาก/ที่สูง)</option>
+                                </select>
+                            </div>
+                          </div>
+                        <div class="input-sum-col">
+                            <label for="aia-sum-input">ทุนประกันที่ต้องการ (บาท):</label>
+                            <input type="number" id="aia-sum-input" value="350000" step="50000" min="100000" inputmode="numeric" class="calc-input-ctrl" oninput="calculatePremium()">
+                        </div>
+                    </div>
+
+                    <div class="calc-display-right">
+                        <span class="calc-display-title">เบี้ยประกันภัยสุทธิต่อปี</span>
+                        <!-- ปรับ id ให้ตรงกับ calculatePremium() -->
+                        <div id="calculated-premium" class="calc-display-number">...</div>
+                        <span id="aia-rate-note" class="calc-display-sub">🔒 ล็อกเบี้ยคงที่ตลอดสัญญา</span>
+                    </div>
+
+                       <!-- ปุ่มเปิดดูเงินคืนสะสมทรัพย์ (ซ่อนเป็นค่าเริ่มต้น) -->
+                        <div id="savingsBenefitArea" style="display: none; margin-top: 6px;">
+                            <button type="button" class="btn-savings-benefit" onclick="openSavingsModal()" 
+                                    style="width: 100%; padding: 5px 8px; font-size: 0.78rem; font-weight: bold; background: #f59e0b; color: #ffffff; border: none; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                                🎁 ดูตารางเงินคืน &amp; กำไรสุทธิ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- แถวปุ่มคู่แคปซูล ประหยัดพื้นที่แนวตั้ง (คำนวณ + ปรึกษาตัวแทน) -->
+                <div style="display: flex; gap: 8px; margin-top: 8px; margin-bottom: 8px;">
+                    <button type="button" class="btn btn-primary" onclick="calculatePremium()" 
+                            style="flex: 1; padding: 7px 10px; background: #0284c7; color: #fff; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 2px 5px rgba(2,132,199,0.25);">
+                        ⚡ คำนวณเบี้ย
+                    </button>
+                    <button type="button" class="btn-compact-line" onclick="closePopup('popup-aia-plans'); openPopup('popup-contact');" 
+                            style="flex: 1.2; padding: 7px 10px; background: #2e7d32; color: #fff; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 2px 5px rgba(46,125,50,0.25);">
+                        💬 ปรึกษาตัวแทน
+                    </button>
+                </div>
+
+                <!-- กล่อง AIA Red Card + ลายน้ำ AIA (สไตล์กะทัดรัด ไม่ล้นจอ) -->
+                <div id="dynamic-plan-content" class="dynamic-content-area" style="margin-top: 0;">
+                    <div style="position: relative; overflow: hidden; border-radius: 10px; background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%); padding: 10px 14px; box-shadow: 0 3px 8px rgba(211, 47, 47, 0.25);">
+                        <!-- ลายน้ำ AIA โค้งมนโปร่งแสงมุมขวาล่าง -->
+                        <div style="position: absolute; right: -6px; bottom: -10px; font-size: 60px; font-weight: 900; color: #ffffff; opacity: 0.12; line-height: 1; pointer-events: none; z-index: 1; user-select: none;">
+                            AIA
+                        </div>
+
+                        <!-- ข้อมูลแผนประกัน (พับ/ขยายได้) -->
+                        <details id="plan-details-toggle" style="position: relative; z-index: 2; cursor: pointer;">
+                            <summary style="font-weight: 700; font-size: 14px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; outline: none; list-style: none;">
+                                <span id="plan-display-name">AIA 20Pay Life (Non Par)</span>
+                                <span style="font-size: 11px; color: #ffcdd2; background: rgba(255,255,255,0.18); padding: 2px 8px; border-radius: 10px; margin-left: 8px;">
+                                    ▼ รายละเอียด
+                                </span>
+                            </summary>
+                            <div id="plan-description" style="font-size: 12px; color: #f8f9fa; line-height: 1.5; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, 0.25);">
+                                ชำระเบี้ย 20 ปี รับความคุ้มครองถึงอายุ 99 ปี มีสิทธิ์ยกเว้นเบี้ยประกัน (WP) หากทุพพลภาพสิ้นเชิง
+                            </div>
+                        </details>
+                    </div>
+                </div> <!-- ปิด calculator-container-box -->
+            </div> <!-- ปิด modal-window compact-aia-modal -->
+        </div> <!-- ปิด popup-aia-plans --> 
+     
+    <!-- Popup 4: FAQ & สิทธิประโยชน์ -->
+    <div id="popup-faq" class="modal-overlay">
+        <div class="modal-window" style="max-width: 580px;">
+            <button class="modal-close" onclick="closePopup('popup-faq')">&times;</button>
+            <h2>ประเด็นข้อกำหนดสัญญาและบริการลูกค้า</h2>
+            <div class="faq-item">
+                <h3>Q: สัญญา 20Pay Life ต่างจากการเก็บเงินในธนาคารอย่างไร?</h3>
+                <p>A: การฝากเงินได้เฉพาะเงินต้นที่ทยอยเก็บได้ แต่สัญญา 20Pay Life การันตีวงเงินคุ้มครองเต็มจำนวนตั้งแต่วันแรกที่สัญญาอนุมัติ</p>
+            </div>
+            <div class="faq-item">
+                <h3>Q: สิทธิ์ยกเว้นเบี้ยประกัน (WP) มีเงื่อนไขอย่างไร?</h3>
+                <p>A: หากผู้เอาประกันทุพพลภาพถาวรสิ้นเชิง บริษัทจะรับหน้าที่ชำระเบี้ยต่อจนครบ 20 ปี โดยที่สัญญายังคงคุ้มครองตามปกติ</p>
+            </div>
+            <div class="faq-item">
+                <h3>Q: ขอหนังสือรับรองการชำระเบี้ยเพื่อลดหย่อนภาษีได้อย่างไร?</h3>
+                <p>A: สามารถแจ้งตัวแทนโดยตรง หรือดาวน์โหลดผ่านแอปพลิเคชัน AIA+ ได้ตลอด 24 ชั่วโมง</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Popup 5: รถยนต์ -->
+    <div id="popup-motor" class="modal-overlay">
+        <div class="modal-window wide-modal" style="max-width: 680px; padding: 18px 22px;">
+            <button class="modal-close" onclick="closePopup('popup-motor')">&times;</button>
+            <h2 style="font-size: 1.18rem; margin-bottom: 3px;">🚗 ประกันภัยรถยนต์ &amp; ต่อ พ.ร.บ. ออนไลน์</h2>
+            <p class="modal-desc" style="font-size: 0.8rem; margin-bottom: 8px;">เปรียบเทียบเบี้ยประกันชั้น 1, 2+, 3+ และต่อ พ.ร.บ. ด่วน ผ่อนได้ คุ้มครองทันที</p>
+            
+            <div class="aff-grid-2col">
+                <button type="button" onclick="openAffiliateProduct('gettgo-motor')" class="btn-aff">
+                    <strong>1. Gettgo : Motor 2+</strong>
+                    <small>เปรียบเทียบเบี้ย 2+ สุดคุ้ม ซื้อง่าย เอกสารไม่ยุ่งยาก</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('scb-protect-motor')" class="btn-aff">
+                    <strong>2. ประกันรถยนต์ SCB Protect</strong>
+                    <small>แผนประกันรถยนต์มั่นใจ คุ้มครองจัดเต็ม เคลมไว</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('axa-motor')" class="btn-aff">
+                    <strong>3. AXA Motor Online Insurance</strong>
+                    <small>ประกันภัยรถยนต์ออนไลน์จาก AXA อุ่นใจทุกเส้นทาง</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('tipinsure-motor')" class="btn-aff">
+                    <strong>4. TIPINSURE ทิพยประกันภัย</strong>
+                    <small>ซื้อประกันรถยนต์ออนไลน์ง่ายๆ รับส่วนลดและโปรโมชัน</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('anc-motor-monthly')" class="btn-aff">
+                    <strong>5. ประกันรถยนต์รายเดือน ANC Broker</strong>
+                    <small>แผนผ่อนสบายรายเดือน ไม่ต้องจ่ายเงินก้อน คุ้มครองทันที</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('msig-motor-safeguard')" class="btn-aff">
+                    <strong>6. MSIG Motor Safeguard 2+/3+</strong>
+                    <small>คุ้มครองชน รถหาย ไฟไหม้ น้ำท่วม มาตรฐาน MSIG</small>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup 6: เดินทาง -->
+    <div id="popup-travel" class="modal-overlay">
+        <div class="modal-window wide-modal" style="max-width: 680px; padding: 18px 22px;">
+            <button class="modal-close" onclick="closePopup('popup-travel')">&times;</button>
+            <h2 style="font-size: 1.18rem; margin-bottom: 3px;">✈️ ประกันภัยการเดินทาง</h2>
+            <p class="modal-desc" style="font-size: 0.8rem; margin-bottom: 8px;">คุ้มครองค่ารักษาพยาบาลฉุกเฉิน เที่ยวบินล่าช้า กระเป๋าหาย ยื่นวีซ่าเชงเก้นไม่ผ่านยินดีคืนเงิน</p>
+            
+            <div class="aff-grid-2col">
+                <button type="button" onclick="openAffiliateProduct('msig-travel-easy-plus')" class="btn-aff">
+                    <strong>1. MSIG Travel Easy Plus</strong>
+                    <small>แผนยอดนิยม ยื่นวีซ่าได้ทั่วโลก บริการฉุกเฉิน 24 ชม.</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('scb-protect-travel')" class="btn-aff">
+                    <strong>2. SCB Protect ประกันเดินทาง</strong>
+                    <small>เที่ยวสบายใจ คุ้มครองอุบัติเหตุ ไฟลท์ยกเลิก ค่ารักษา</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('gettgo-travel')" class="btn-aff">
+                    <strong>3. Gettgo ประกันเดินทาง</strong>
+                    <small>ศูนย์รวมแผนประกันเดินทาง เปรียบเทียบราคาได้หลากหลาย</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('tune-protect-travel')" class="btn-aff">
+                    <strong>4. Tune Protect Travel</strong>
+                    <small>เบี้ยประหยัด คุ้มครองครบ จบไวผ่านออนไลน์ใน 5 นาที</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('axa-inter-travel')" class="btn-aff">
+                    <strong>5. AXA International Travel</strong>
+                    <small>ประกันเดินทางต่างประเทศ ได้รับการยอมรับจากสถานทูต</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('axa-domestic-travel')" class="btn-aff">
+                    <strong>6. AXA Domestic Travel</strong>
+                    <small>เที่ยวในประเทศอุ่นใจ คุ้มครองอุบัติเหตุทั่วไทย</small>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup 7: บ้าน -->
+    <div id="popup-home" class="modal-overlay">
+        <div class="modal-window" style="max-width: 580px;">
+            <button class="modal-close" onclick="closePopup('popup-home')">&times;</button>
+            <h2>🏠 ประกันอัคคีภัยบ้าน &amp; สินเชื่อรีไฟแนนซ์</h2>
+            <p class="modal-desc">คุ้มครองโครงสร้างบ้าน ทรัพย์สินภายใน น้ำท่วม ไฟไหม้ พร้อมทางเลือกลดดอกเบี้ยบ้าน</p>
+            
+            <div class="aff-grid-2col" style="margin-top: 10px;">
+                <button type="button" onclick="openAffiliateProduct('msig-home')" class="btn-aff">
+                    <strong>1. ประกันภัยบ้านแทนรัก MSIG</strong><br>
+                    <small>คุ้มครองสิ่งปลูกสร้างและเฟอร์นิเจอร์ รับมือทุกภัยธรรมชาติและไฟไหม้</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('lh-home-refinance')" class="btn-aff">
+                    <strong>2. LH BANK สินเชื่อบ้าน Refinance</strong><br>
+                    <small>ลดดอกเบี้ยบ้าน ผ่อนเบาลง วงเงินกู้สูง ปลดล็อกภาระหนี้</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('lh-happy-home-cash')" class="btn-aff">
+                    <strong>3. LH BANK Happy Home for Cash</strong><br>
+                    <small>เปลี่ยนบ้านเป็นเงินก้อน ดอกเบี้ยพิเศษ เสริมสภาพคล่องการเงิน</small>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup 8: มะเร็ง สุขภาพ -->
+    <div id="popup-health" class="modal-overlay">
+        <div class="modal-window" style="max-width: 580px;">
+            <button class="modal-close" onclick="closePopup('popup-health')">&times;</button>
+            <h2>🩺 ประกันมะเร็ง โรคร้ายแรง &amp; อุบัติเหตุ</h2>
+            <p class="modal-desc">แผนความคุ้มครองเฉพาะจุด ตรวจพบรับเงินก้อนทันที ซื้อผ่านระบบออนไลน์ได้ด้วยตัวเอง</p>
+            
+            <div class="aff-grid-2col" style="margin-top: 10px;">
+                <button type="button" onclick="openAffiliateProduct('msig-cancer-fix')" class="btn-aff">
+                    <strong>1. ประกันมะเร็ง MSIG Cancer Fix</strong><br>
+                    <small>คุ้มครองมะเร็งทุกระยะ ตรวจเจอจ่ายเงินก้อนทันที เบี้ยคงที่</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('scb-protect-ci')" class="btn-aff">
+                    <strong>2. ประกันโรคร้ายแรง SCB Protect</strong><br>
+                    <small>เจอจ่ายจริง รับเงินก้อนดูแลตัวเอง เบี้ยเบาๆ แบ่งเบาภาระ</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('viriya-pa')" class="btn-aff">
+                    <strong>3. ประกันอุบัติเหตุ วิริยะ (ANC Broker)</strong><br>
+                    <small>ดูแลค่ารักษาพยาบาลจากอุบัติเหตุ 24 ชั่วโมง ไม่ต้องสำรองจ่าย</small>
+                </button>
+                <button type="button" onclick="openAffiliateProduct('axa-pa')" class="btn-aff">
+                    <strong>4. AXA Personal Accident (PA)</strong><br>
+                    <small>ประกันอุบัติเหตุส่วนบุคคล คุ้มครองค่ารักษาและการสูญเสียอวัยวะ</small>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- ==================== POPUP 9: หน้าต่างแสดงโบรชัวร์ PDF ปรับปรุงใหม่ ==================== -->
+    <div id="popup-pdf-viewer" class="modal-overlay">
+        <div class="modal-window" style="max-width: 900px; width: 96%; height: 90vh; display: flex; flex-direction: column; padding: 12px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <h3 id="pdf-viewer-title" style="margin: 0; font-size: 1rem; color: #0f172a;">📄 โบรชัวร์แบบประกัน AIA</h3>
+                    <!-- ปุ่มเปิดดูเต็มจอในแท็บใหม่ (เหมาะมากสำหรับจอมือถือ) -->
+                    <a id="pdf-open-external" href="#" target="_blank" rel="noopener" 
+                       style="font-size: 0.75rem; background: #e0f2fe; color: #0284c7; padding: 3px 8px; border-radius: 4px; text-decoration: none; font-weight: bold;">
+                        ↗ เปิดเต็มจอ
+                    </a>
+                </div>
+                <button type="button" class="modal-close" onclick="closePdfViewer()">&times;</button>
+            </div>
+            <!-- หน้าต่างแสดงไฟล์ PDF -->
+            <div style="flex: 1; width: 100%; border-radius: 8px; overflow: hidden; background: #334155;">
+                <iframe id="pdf-frame" src="" width="100%" height="100%" style="border: none;"></iframe>
+            </div>
+        </div>
+    </div>
+
+       <!-- ==================== POPUP 10: สรุปผลประโยชน์สะสมทรัพย์ ==================== -->
+    <div id="popup-savings-benefit" class="modal-overlay">
+        <div class="modal-window" style="max-width: 480px; padding: 20px 22px; border-radius: 14px;">
+            <button class="modal-close" onclick="closePopup('popup-savings-benefit')">&times;</button>
+            <h3 style="margin: 0 0 6px 0; font-size: 1.15rem; color: #15803d;">💰 สรุปผลประโยชน์และเงินคืนตลอดสัญญา</h3>
+            <p style="font-size: 0.8rem; color: #64748b; margin: 0 0 14px 0;">แบบประกัน AIA 5Pay10 (Non Par) สะสมทรัพย์ 10 ปี ชำระเบี้ยสั้น 5 ปี</p>
+
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 12px; text-align: center;">
+                <div style="font-size: 0.82rem; color: #475569;">ทุนประกันที่เลือก: <strong id="modalSumAssured" style="color: #0f172a;">350,000</strong> บาท</div>
+                <div style="font-size: 1rem; color: #dc2626; font-weight: bold; margin-top: 4px;">
+                    ส่งเบี้ยปีละ <span id="modalAnnualPaid"></span> บ. (รวมชำระ <span id="modalTotalPaid"></span>)
+                </div>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+                <span style="display: block; font-size: 0.85rem; font-weight: bold; color: #166534; margin-bottom: 6px;">
+                      🎉 ผลประโยชน์ที่จะได้รับคืนทั้งหมด (<span id="modalReturnPct"></span>% ของทุน)
+               </span>
+                <div style="font-size: 0.82rem; line-height: 1.8; color: #334155; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px;">
+                    <div style="border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px;">
+                        <span id="modalCashback" style="color: #0284c7; font-weight: 500;"></span>
+                    </div>
+                    <div style="border-bottom: 1px dashed #e2e8f0; padding: 4px 0;">
+                        <span id="modalMaturity" style="color: #0284c7; font-weight: 500;"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-top: 4px; font-weight: bold; background: #fef3c7; margin: 4px -8px -4px -8px; padding: 6px 8px; border-radius: 4px;">
+                        <span style="color: #92400e;">• รวมรับผลประโยชน์คืนทั้งสิ้น</span>
+                        <span id="modalTotalReturn" style="color: #166534; font-size: 0.95rem;"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 12px; font-size: 0.8rem; color: #166534; text-align: center; margin-bottom: 14px;">
+                ✨ <strong>ผลประโยชน์เงินคืนมากกว่าเบี้ยที่จ่าย:</strong> <span id="modalProfit" style="font-weight: bold; font-size: 0.95rem;"></span> บาท<br>
+               <small style="color: #64748b;">(พร้อมสิทธิลดหย่อนภาษีปีละ <span id="modalTaxAmount"></span> บาท อีก <span id="modalTaxYears"></span> ปีเต็ม)</small>
+            </div>
+
+            <button type="button" class="btn btn-line" onclick="closePopup('popup-savings-benefit')" style="width: 100%; padding: 7px; font-size: 0.85rem;">
+                เข้าใจแล้ว ปิดหน้าต่าง
+            </button>
+        </div>
+    </div>
+    <footer class="footer" style="text-align: center; width: 100%; margin-top: 20px; padding: 15px 0;">
+        <div class="footer-links" style="display: flex; justify-content: center; gap: 12px; align-items: center; margin-bottom: 6px;">
+            <a href="about.html">เกี่ยวกับเรา (About Us)</a>
+            <span class="divider">|</span>
+            <a href="privacy.html">นโยบายความเป็นส่วนตัว (Privacy Policy)</a>
+            <span class="divider">|</span>
+            <a href="javascript:void(0)" onclick="openPopup('popup-faq')">คำถามที่พบบ่อย (FAQ)</a>
+        </div>
+        <p style="margin: 0; text-align: center;">© 2026 LNY Insurance Advisor. ข้อมูลบนเว็บไซต์จัดทำขึ้นเพื่อการวางแผนเบื้องต้น โปรดศึกษาเงื่อนไขกรมธรรม์ฉบับจริงก่อนตัดสินใจทำประกันภัยทุกครั้ง</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "paylife20",
+    "pillar": 1,
+    "category": "core",
+    "title": "AIA 20Pay Life (Non Par)",
+    "subtitle": "ตลอดชีพ จ่าย 20 ปี คุ้มครองถึงอายุ 99 ปี",
+    "pdf": "brochures/Brochure AIA 20Pay Life (Non Par)_18Jan2023.pdf"
+  },
+  {
+    "id": "term",
+    "pillar": 1,
+    "category": "core",
+    "title": "AIA Term (5, 10, 15, 20 ปี)",
+    "subtitle": "ชั่วระยะเวลา เบี้ยประหยัด เน้นทุนคุ้มครองสูง",
+    "pdf": "brochures/1Term_P6.pdf"
+  },
+  {
+    "id": "savingsure",
+    "pillar": 1,
+    "category": "saving",
+    "title": "AIA Saving Sure (Non Par)",
+    "subtitle": "สะสมทรัพย์การันตีผลตอบแทน มีเงินคืนแน่นอน",
+    "pdf": "brochures/AIA Saving Sure Brochure .pdf"
+  },
+  {
+    "id": "5pay10",
+    "pillar": 1,
+    "category": "saving",
+    "title": "AIA 5Pay10 (Non Par)",
+    "subtitle": "จ่ายสั้น 5 ปี คุ้มครอง 10 ปี รับเงินก้อนคืนไว",
+    "pdf": "brochures/Brochure 5Pay10 (Non Par)_27Jan2023.pdf"
+  },
+  {
+    "id": "endowment15pay25",
+    "pillar": 1,
+    "category": "saving",
+    "title": "AIA Endowment 15Pay25 (Non Par)",
+    "subtitle": "ออมระยะยาว จ่าย 15 ปี คุ้มครอง 25 ปี ทุนชีวิตสูง",
+    "pdf": "brochures/Brochure AIA Endowment 15Pay25 (Non Par)_18Jan2023.pdf"
+  },
+  {
+    "id": "excellent",
+    "pillar": 1,
+    "category": "saving",
+    "title": "AIA Excellent (Non Par)",
+    "subtitle": "สะสมทรัพย์ยอดนิยม มีเงินคืนต่อเนื่องตลอดสัญญา",
+    "pdf": "brochures/Brochure AIA Excellent (Non Par)_27Jan2023.pdf"
+  },
+  {
+    "id": "healthhappy",
+    "pillar": 2,
+    "category": "health",
+    "title": "AIA Health Happy",
+    "subtitle": "เหมาจ่ายค่ารักษาพยาบาลตามจริง ครอบคลุมทุกความเสี่ยง",
+    "pdf": "brochures/aia-health-happy-th-2026.pdf"
+  },
+  {
+    "id": "healthstarter",
+    "pillar": 2,
+    "category": "health",
+    "title": "AIA Health Starter",
+    "subtitle": "ประกันสุขภาพก้าวแรก เริ่มต้นง่าย เบี้ยสบายกระเป๋า",
+    "pdf": "brochures/AIA_Health_Starter_brochure_8 Jan 2026.pdf"
+  },
+  {
+    "id": "hbextra",
+    "pillar": 2,
+    "category": "income",
+    "title": "AIA HB Extra (ชดเชยรายได้)",
+    "subtitle": "ชดเชยรายได้รายวันเมื่อนอนโรงพยาบาล เพิ่มความอุ่นใจ",
+    "pdf": "brochures/AIA-HB-Extra-BrochureAug2025.pdf"
+  },
+  {
+    "id": "ciplus",
+    "pillar": 3,
+    "category": "ci",
+    "title": "AIA CI Plus",
+    "subtitle": "คุ้มครอง 44 โรคร้ายแรง ตรวจพบรับเงินก้อนทันที",
+    "pdf": "brochures/TH-AIA-CI-Plus-Brochure_r.pdf"
+  },
+  {
+    "id": "cisupercare",
+    "pillar": 3,
+    "category": "ci",
+    "title": "AIA CI SuperCare",
+    "subtitle": "ดูแลโรคร้ายแรงทุกระยะ ยาวนานตลอดชีพ เบี้ยคงที่",
+    "pdf": "brochures/Brochure AIA CI SuperCare_18Jan2023_Final.pdf"
+  },
+  {
+    "id": "accident_ai",
+    "pillar": 4,
+    "category": "accident",
+    "title": "AIA อุบัติเหตุ (AI / ADD / ADB)",
+    "subtitle": "ชดเชยค่ารักษาและเงินก้อนกรณีเกิดอุบัติเหตุตลอด 24 ชม.",
+    "pdf": "brochures/AIA_AI-RCC_ADD-RCC_ADB-RCC_18032021.pdf"
+  },
+  {
+    "id": "wpci",
+    "pillar": 4,
+    "category": "wp",
+    "title": "AIA WPCI (สิทธิ์ยกเว้นเบี้ย)",
+    "subtitle": "ยกเว้นการชำระเบี้ยเมื่อตรวจพบโรคร้ายแรง AIA จ่ายแทนให้",
+    "pdf": "brochures/AIAWPCI_TH_Brochure_re.pdf"
+  }
+]

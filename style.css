@@ -1,0 +1,1042 @@
+@charset "UTF-8";
+
+:root {
+    --bg-page: #f8fafc;
+    --navbar-bg: #ffffff;
+    --navy-dark: #0f172a;
+    --primary-blue: #0284c7;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --border-light: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* ========================================================
+   1. NAVBAR ด้านบน (โปร่งแสง สไตล์ Glassmorphism 2-in-1)
+   ======================================================== */
+.navbar {
+    width: 100%;
+    background: rgba(224, 242, 254, 0.7); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-banner-box img {
+    height: 52px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.75));
+    transition: transform 0.2s ease;
+}
+
+.brand-banner-box img:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* แคปซูลสโลแกน 2-in-1 แปลงร่างเป็นช่องค้นหา */
+.smart-search-capsule {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    border-radius: 25px;
+    padding: 3px 14px;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.06);
+    transition: all 0.25s ease;
+    max-width: 440px;
+    width: 100%;
+}
+
+.smart-search-capsule:focus-within {
+    background: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.search-glass-icon {
+    font-size: 0.95rem;
+    color: #0284c7;
+    margin-right: 8px;
+    user-select: none;
+}
+
+#main-search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: #0f172a;
+    padding: 4px 0;
+}
+
+#main-search-input::placeholder {
+    color: #0369a1;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 0.9;
+}
+
+#main-search-input:focus::placeholder {
+    opacity: 0;
+    transform: translateX(10px);
+}
+
+#search-clear-btn {
+    background: none;
+    border: none;
+    font-size: 1.15rem;
+    color: #94a3b8;
+    cursor: pointer;
+    display: none;
+    line-height: 1;
+    padding-left: 6px;
+}
+
+#search-clear-btn:hover { color: #ef4444; }
+
+.search-suggest-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    z-index: 2500;
+    display: none;
+    overflow: hidden;
+}
+
+.suggest-item {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+    color: #334155;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.15s ease;
+}
+
+.suggest-item:hover {
+    background: #f0f9ff;
+    color: #0284c7;
+}
+
+.suggest-empty {
+    padding: 12px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-align: center;
+}
+
+/* ปุ่มอ่านแนวคิด & ปุ่มตัวแทน AIA ฝั่งขวาบน */
+.nav-actions-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-nav-concept {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-nav-concept:hover {
+    background: #dcfce7;
+    transform: translateY(-1px);
+}
+
+.btn-nav-agent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid #ef4444;
+    padding: 4px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.08);
+}
+
+.btn-nav-agent:hover {
+    background: #fef2f2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.agent-shield { font-size: 1.15rem; }
+.agent-text-wrap { text-align: left; line-height: 1.15; }
+.agent-text-wrap strong { display: block; font-size: 0.82rem; color: #b91c1c; }
+.agent-text-wrap small { display: block; font-size: 0.68rem; color: #64748b; }
+
+/* ========================================================
+   2. MAIN PORTAL LAYOUT (ซ้าย 25% : ขวา 75%)
+   ======================================================== */
+.portal-layout-container {
+    max-width: 1260px;
+    margin: 20px auto 40px auto;
+    padding: 0 15px;
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* แถบซ้าย 25%: เมนูปุ่มด่วน */
+.sidebar-menu-25 {
+    flex: 0 0 280px;
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-title-header {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0f172a;
+    padding: 4px 8px 8px 8px;
+    border-bottom: 2px solid #e0f2fe;
+    margin-bottom: 2px;
+}
+
+.quick-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.quick-nav-btn:hover {
+    background: #f0f9ff;
+    border-color: #0284c7;
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+}
+
+.quick-nav-btn.btn-aia {
+    border-left: 3px solid #ef4444;
+}
+
+.quick-nav-btn .btn-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.quick-nav-btn .btn-text strong {
+    display: block;
+    font-size: 0.84rem;
+    color: #0f172a;
+}
+
+.quick-nav-btn .btn-text small {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748b;
+    line-height: 1.2;
+}
+
+.menu-divider {
+    text-align: center;
+    border-bottom: 1px dashed #cbd5e1;
+    line-height: 0.1em;
+    margin: 6px 0;
+}
+
+.menu-divider span {
+    background: #fff;
+    padding: 0 8px;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+/* แถบขวา 75%: Hero Interactive Slider */
+.slider-stage-75 {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 480px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease-in-out, visibility 0.6s;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.slide-card.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide-content {
+    max-width: 580px;
+    color: #ffffff;
+    z-index: 2;
+}
+
+.slide-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.slide-content h2 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.25;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.slide-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 22px;
+    color: #e2e8f0;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.slide-cta-btn {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+    transition: all 0.2s ease;
+}
+
+.slide-cta-btn:hover {
+    background: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.6);
+}
+
+/* ปุ่มลูกศรเลื่อนสไลด์ */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.45);
+    color: #ffffff;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.slider-arrow:hover {
+    background: rgba(2, 132, 199, 0.85);
+}
+
+.slider-arrow.prev { left: 14px; }
+.slider-arrow.next { right: 14px; }
+
+/* จุดไข่ปลาบอกตำแหน่งสไลด์ */
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.dot.active {
+    width: 24px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+/* ========================================================
+   3. POPUP MODAL DIALOGS & AFFILIATE BUTTONS
+   ======================================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 3000;
+    overflow-y: auto;
+    padding: 30px 15px;
+}
+
+.modal-window {
+    background: #ffffff;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 12px;
+    padding: 24px 22px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover { color: #ef4444; }
+
+.modal-window h2 {
+    color: var(--navy-dark);
+    font-size: 1.22rem;
+    margin-bottom: 4px;
+}
+
+.modal-desc {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+}
+
+/* กริด 2 คอลัมน์สำหรับผังแบบประกัน AIA */
+.aia-catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+/* กริด 2 คอลัมน์สำหรับปุ่ม Affiliate (รถยนต์ & เดินทาง) */
+.aff-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+    margin-top: 10px;
+}
+
+.btn-aff {
+    display: block;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: var(--navy-dark);
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.btn-aff strong {
+    color: var(--primary-blue);
+    font-size: 0.86rem;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.btn-aff small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.3;
+    display: block;
+}
+
+.btn-aff:hover {
+    background: #f0f9ff;
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.1);
+}
+
+.btn-line {
+    display: inline-block;
+    background: #06c755;
+    color: #ffffff;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-line:hover { background: #05b04c; }
+.text-center { text-align: center; }
+
+/* FAQ Items */
+.faq-item {
+    background: #f8fafc;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+}
+
+.faq-item h3 { font-size: 0.88rem; color: var(--navy-dark); margin-bottom: 2px; }
+.faq-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
+
+/* ตารางเปรียบเทียบใน Popup Concept */
+.table-responsive { overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; }
+.compare-table th, .compare-table td { padding: 8px 12px; border: 1px solid var(--border-light); font-size: 0.82rem; }
+.compare-table th { background: #f1f5f9; color: var(--navy-dark); }
+.compare-table .highlight-col { background: #fff1f2; color: #9f1239; }
+
+/* ========================================================
+   4. AIA COMPACT MODAL CALCULATOR
+   ======================================================== */
+.compact-aia-modal {
+    max-width: 580px !important;
+    width: 95% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    padding: 14px 18px !important;
+    border-radius: 12px;
+    margin: auto;
+}
+
+.compact-modal-title { margin: 0 0 10px 0; font-size: 1.15rem; color: #0f172a; }
+
+.notice-alert-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+    color: #92400e;
+}
+
+.btn-close-alert { background: none; border: none; font-size: 1.1rem; color: #b45309; cursor: pointer; }
+
+.calculator-container-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+
+.field-plan-select label, .calc-inputs-left label { display: block; font-size: 0.78rem; font-weight: 600; color: #334155; margin-bottom: 2px; }
+.calc-input-ctrl { width: 100%; height: 34px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.88rem; background: #ffffff; }
+
+.calc-split-row { display: flex; gap: 10px; align-items: stretch; }
+.calc-inputs-left { flex: 1.2; display: flex; flex-direction: column; gap: 6px; }
+.input-twin-cols { display: flex; gap: 6px; }
+.twin-col { flex: 1; }
+
+.calc-display-right {
+    flex: 1;
+    background: #ecfdf5;
+    border: 1.5px solid #10b981;
+    border-radius: 6px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.calc-display-title { font-size: 0.72rem; font-weight: 600; color: #065f46; }
+.calc-display-number { font-size: 1.3rem; font-weight: 700; color: #15803d; margin: 2px 0; }
+.calc-display-sub { font-size: 0.68rem; color: #0369a1; }
+
+.plan-mini-summary {
+    background-color: #ffffff;
+    background-image: url('images/aia-icon.png');
+    background-repeat: no-repeat;
+    background-size: 260px auto;
+    background-position: right -15px center;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #D31145;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.btn-compact-line {
+    width: 100%;
+    background: #06c755;
+    color: #ffffff;
+    border: none;
+    padding: 9px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-compact-line:hover { background: #05b04c; }
+
+.aia-modal-header-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.brand-logo-crop {
+    width: 145px;
+    height: 30px;
+    background-image: url('images/aia-icon.png');
+    background-repeat: no-repeat;
+    background-size: 460px auto;
+    background-position: -65px center;
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN (ปรับสลับตำแหน่งและขนาดบนมือถือ)
+   ======================================================== */
+
+/* จอคอมพิวเตอร์และโน้ตบุ๊กทั่วไป (กว้างเกิน 992px) */
+@media (min-width: 993px) {
+    .portal-layout-container {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .sidebar-menu-25 {
+        flex: 0 0 280px;
+        order: 1; /* เมนูอยู่ซ้าย */
+    }
+    .slider-stage-75 {
+        flex: 1;
+        order: 2; /* สไลเดอร์อยู่ขวา */
+        min-height: 480px;
+    }
+}
+
+/* ========================================================
+   1. จอมือถือแนวนอน (Landscape: ความสูงไม่เกิน 500px เช่น 850 x 400)
+   ======================================================== */
+@media (orientation: landscape) and (max-height: 500px) {
+    .nav-container {
+        padding: 4px 15px !important;
+        gap: 8px !important;
+    }
+    .brand-banner-box img {
+        height: 34px !important;
+    }
+    .smart-search-capsule {
+        max-width: 260px !important;
+        padding: 2px 8px !important;
+    }
+    .btn-nav-concept, .btn-nav-agent {
+        padding: 2px 8px !important;
+        font-size: 0.68rem !important;
+    }
+
+    /* เลย์เอาต์ซ้าย-ขวา */
+    .portal-layout-container {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px !important;
+        margin: 10px auto 15px auto !important;
+        padding: 0 10px !important;
+        align-items: stretch !important;
+    }
+
+    /* ซีกซ้าย 38%: เมนูด่วน 7 ปุ่ม */
+    .sidebar-menu-25 {
+        flex: 0 0 38% !important;
+        order: 1 !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+        padding: 8px !important;
+        background: #ffffff !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    .menu-title-header, .menu-divider {
+        display: none !important;
+    }
+
+    .quick-nav-btn {
+        padding: 5px 6px !important;
+        gap: 4px !important;
+    }
+    .quick-nav-btn .btn-icon {
+        font-size: 0.95rem !important;
+    }
+    .quick-nav-btn .btn-text strong {
+        font-size: 0.68rem !important;
+    }
+    .quick-nav-btn .btn-text small {
+        display: none !important;
+    }
+
+    /* ซีกขวา 62%: สไลเดอร์แนวนอน */
+    .slider-stage-75 {
+        flex: 1 !important;
+        order: 2 !important;
+        height: 240px !important;
+        min-height: 240px !important;
+        max-height: 240px !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+
+    .slide-card {
+        padding: 12px 18px 12px 18px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; /* จัดเนื้อหาตรงกลางแนวตั้ง ไม่ลอยขึ้นไปบน */
+        align-items: flex-start !important;
+        box-sizing: border-box !important;
+    }
+
+    .slide-tag {
+        font-size: 0.65rem !important;
+        padding: 2px 8px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .slide-content h2 {
+        font-size: 0.95rem !important;
+        margin-bottom: 4px !important;
+        line-height: 1.25 !important;
+    }
+
+    .slide-content p {
+        font-size: 0.72rem !important;
+        margin-bottom: 8px !important;
+        line-height: 1.3 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .slide-cta-btn {
+        padding: 5px 12px !important;
+        font-size: 0.72rem !important;
+    }
+
+    .slider-arrow {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .slider-dots {
+        bottom: 4px !important;
+    }
+}
+
+/* ========================================================
+   RESPONSIVE จอมือถือแนวตั้ง (ความกว้างไม่เกิน 600px)
+   ======================================================== */
+@media (max-width: 600px) {
+    .portal-layout-container {
+        display: block !important;
+        margin: 10px auto 30px auto !important;
+        padding: 0 12px !important;
+    }
+
+    .slider-stage-75 {
+        display: block !important;
+        width: 100% !important;
+        height: 300px !important;
+        min-height: 300px !important;
+        max-height: 300px !important;
+        position: relative !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        margin-bottom: 16px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .slider-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+    }
+
+    .slide-card {
+        padding: 20px 16px 30px 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .slide-content {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .slide-tag {
+        font-size: 0.72rem !important;
+        padding: 2px 10px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .slide-content h2 {
+        font-size: 1.1rem !important;
+        margin-bottom: 5px !important;
+        line-height: 1.3 !important;
+    }
+
+    .slide-content p {
+        font-size: 0.75rem !important;
+        margin-bottom: 12px !important;
+        line-height: 1.35 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .slide-cta-btn {
+        padding: 7px 15px !important;
+        font-size: 0.78rem !important;
+        border-radius: 6px !important;
+    }
+
+    .slider-arrow {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8rem !important;
+    }
+    .slider-arrow.prev { left: 6px !important; }
+    .slider-arrow.next { right: 6px !important; }
+
+    .slider-dots {
+        bottom: 8px !important;
+    }
+
+    .sidebar-menu-25 {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        width: 100% !important;
+        padding: 12px 10px !important;
+        border-radius: 10px !important;
+        background: #ffffff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        box-sizing: border-box !important;
+    }
+
+    .menu-title-header {
+        grid-column: span 2 !important;
+        padding: 0 4px 4px 4px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .menu-divider {
+        grid-column: span 2 !important;
+        margin: 2px 0 !important;
+    }
+
+    .quick-nav-btn {
+        padding: 7px 8px !important;
+        gap: 6px !important;
+    }
+
+    .quick-nav-btn .btn-icon {
+        font-size: 1.05rem !important;
+    }
+
+    .quick-nav-btn .btn-text strong {
+        font-size: 0.75rem !important;
+    }
+
+    .quick-nav-btn .btn-text small {
+        display: none !important;
+    }
+
+    .nav-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+    }
+    .nav-actions-right {
+        justify-content: space-between !important;
+    }
+
+    .aff-grid-2col, .aia-catalog-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* สไตล์แคปซูล 4 เสาหลัก */
+.pillar-tab {
+    flex: 1;
+    min-width: 110px;
+    padding: 7px 10px;
+    border-radius: 20px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.pillar-tab.active {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
+}
+.btn-doc {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 0.78rem;
+    color: #1e293b;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s ease;
+}
+.btn-doc:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+/* ปรับแต่งให้รองรับหน้าจอมือถือ (Responsive Mobile View) */
+@media (max-width: 600px) {
+  /* ให้กล่องคำนวณกว้างเกือบเต็มจอมือถือ */
+  .calculator-container-box, 
+  .calculator-card {
+    width: 95% !important;
+    max-width: 100% !important;
+    margin: 10px auto !important;
+    padding: 14px !important;
+  }
+
+  /* ปรับช่อง Select ให้ตัดคำ ไม่ดันจอ */
+  #aia-plan-select {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* ปรับแถวคู่ (เพศ, อายุ, ทุนประกัน) ให้เรียงตัวแบบไม่บีบอัด */
+  .twin-col, .calc-split-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+/* จัดระเบียบเฉพาะตอนหน้าจอแนวนอนเตี้ยมากๆ (ความสูง <= 500px) */
+@media (max-height: 500px) {
+  /* ซ่อนแถบเตือนสีเหลืองของ AIA เพื่อคืนพื้นที่ 45px ให้ปุ่มและผลลัพธ์ */
+  #aia-alert-notice {
+    display: none !important;
+  }
+  
+  /* ลดระยะห่างแนวตั้งของโมดอล AIA */
+  .compact-aia-modal {
+    padding: 10px 14px !important;
+  }
+  .compact-aia-modal .category-filter-container {
+    margin-bottom: 4px !important;
+  }
+  .compact-aia-modal .calc-split-row {
+    margin-bottom: 4px !important;
+  }
+}

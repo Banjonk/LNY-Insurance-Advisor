@@ -1,0 +1,98 @@
+[
+  {
+    "id": "msig-cancer-fix",
+    "title": "ประกันภัยโรคมะเร็ง MSIG Cancer Fix",
+    "desc": "คุ้มครองโรคมะเร็งทุกระยะ ตรวจพบรับเงินก้อนทันที เบี้ยเริ่มต้นสบายกระเป๋า",
+    "badge": "ยอดนิยม",
+    "link": "https://atth.me/002t46002anw",
+    "fallback": "https://www.msig-thai.com"
+  },
+  {
+    "id": "scb-protect-ci",
+    "title": "ประกันโรคร้ายแรง SCB Protect",
+    "desc": "รับมือโรคร้ายแรงอย่างมั่นใจ คุ้มครองครอบคลุม วงเงินรักษาจัดเต็ม",
+    "badge": "แนะนำ",
+    "link": "https://atth.me/00dgll002anw",
+    "fallback": "https://www.scbprotect.co.th"
+  },
+  {
+    "id": "axa-pa",
+    "title": "ประกันอุบัติเหตุ AXA Personal Accident",
+    "desc": "คุ้มครองอุบัติเหตุตลอด 24 ชั่วโมง ทั่วโลก ไม่ต้องสำรองจ่ายในโรงพยาบาลคู่สัญญา",
+    "badge": "สุดคุ้ม",
+    "link": "https://atth.me/003ump002anw",
+    "fallback": "https://www.axa.co.th"
+  },
+  {
+    "id": "viriya-pa",
+    "title": "ประกันอุบัติเหตุ วิริยะประกันภัย (ANC Broker)",
+    "desc": "ดูแลทุกอุบัติเหตุฉุกเฉิน มั่นใจด้วยเครือข่ายโรงพยาบาลทั่วประเทศ",
+    "badge": "ติดอันดับ",
+    "link": "https://atth.me/0088b6002anw",
+    "fallback": "https://www.viriyah.co.th"
+  },
+  {
+    "id": "msig-home",
+    "title": "ประกันภัยบ้านแทนรัก MSIG",
+    "desc": "คุ้มครองบ้านและทรัพย์สินจากอัคคีภัย ภัยธรรมชาติ และการโจรกรรม มั่นใจดูแลบ้านคุณ",
+    "badge": "เพื่อคนรักบ้าน",
+    "link": "https://atth.me/001q8a002anw",
+    "fallback": "https://www.msig-thai.com"
+  },
+  {
+    "id": "lh-happy-home-cash",
+    "title": "LH BANK Happy Home for Cash",
+    "desc": "เปลี่ยนบ้านเป็นเงินก้อน ดอกเบี้ยต่ำ ผ่อนสบาย วงเงินกู้สูง เสริมสภาพคล่องเพื่อคนมีบ้าน",
+    "badge": "สินเชื่อบ้าน",
+    "link": "https://atth.me/00eeaj002anw",
+    "fallback": "https://www.lhbank.co.th"
+  },
+  {
+    "id": "lh-home-refinance",
+    "title": "LH BANK สินเชื่อบ้าน Refinance",
+    "desc": "ลดภาระดอกเบี้ยบ้าน ผ่อนเบาลง ปลดหนี้บ้านไวขึ้น พร้อมบริการให้คำปรึกษาฟรี",
+    "badge": "รีไฟแนนซ์บ้าน",
+    "link": "https://atth.me/00eeac002anw",
+    "fallback": "https://www.lhbank.co.th"
+  },
+  {
+    "id": "axa-motor",
+    "title": "ประกันภัยรถยนต์ AXA Motor Online",
+    "desc": "ซื้อออนไลน์รับความคุ้มครองทันที เคลมง่าย มีบริการช่วยเหลือฉุกเฉิน 24 ชม.",
+    "badge": "ยอดฮิต",
+    "link": "https://atth.me/0038ag002anw",
+    "fallback": "https://www.axa.co.th"
+  },
+  {
+    "id": "tipinsure-motor",
+    "title": "TIPINSURE ประกันภัยรถยนต์ โดย ทิพยประกันภัย",
+    "desc": "คุ้มครองครบครัน เบี้ยประหยัด ผ่อน 0% ซื้อสะดวกผ่านระบบออนไลน์",
+    "badge": "โปรโมชั่น",
+    "link": "https://atth.me/000bqr002anw",
+    "fallback": "https://www.tipinsure.com"
+  },
+  {
+    "id": "gettgo-motor",
+    "title": "ประกันรถยนต์ 2+ คุ้มค่า โดย Gettgo",
+    "desc": "เปรียบเทียบราคาเบี้ยง่าย คุ้มครองชน น้ำท่วม สูญหาย และไฟไหม้",
+    "badge": "คุ้มค่า",
+    "link": "https://atth.me/001oyj002anw",
+    "fallback": "https://gettgo.com"
+  },
+  {
+    "id": "scb-protect-motor",
+    "title": "ประกันรถยนต์ SCB Protect",
+    "desc": "บริการรวดเร็ว มั่นใจทุกเส้นทาง มีอู่และศูนย์ซ่อมมาตรฐานรองรับทั่วประเทศ",
+    "badge": "แนะนำ",
+    "link": "https://atth.me/00dhxh002anw",
+    "fallback": "https://www.scbprotect.co.th"
+  },
+  {
+    "id": "msig-motor-safeguard",
+    "title": "MSIG Motor Safeguard 2+ 3+",
+    "desc": "เบี้ยราคาเบา คุ้มครองจัดหนัก เหมาะสำหรับรถที่ใช้งานทั่วไป",
+    "badge": "ประหยัด",
+    "link": "https://atth.me/002c5k002anw",
+    "fallback": "https://www.msig-thai.com"
+  }
+]

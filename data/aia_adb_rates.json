@@ -1,0 +1,12 @@
+{
+  "plan_id": "aia_adb",
+  "plan_name": "AIA ADB",
+  "rate_unit": 1000,
+  "by_occ_class": true,
+  "rates_by_class": {
+    "1": 1.50,
+    "2": 2.25,
+    "3": 3.00,
+    "4": 0
+  }
+}
