@@ -1,0 +1,26 @@
+name: Affiliate Link Health Checker
+
+on:
+  schedule:
+    # รันอัตโนมัติทุกวันจันทร์ เวลา 09:00 น. ตามเวลาไทย (UTC 02:00)
+    - cron: '0 2 * * 1'
+  # รองรับการกดปุ่มสั่งรันด้วยตัวเองผ่านหน้าเว็บ GitHub (Manual trigger)
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ดึงโค้ดโปรเจกต์
+        uses: actions/checkout@v4
+
+      - name: ติดตั้ง Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: สั่งรันสคริปต์สแกนลิงก์
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: node scripts/check_links.js
