@@ -104,7 +104,7 @@
     "fallback": "https://www.ancbroker.com"
   },
   {
-    "id": "msig-travel-easy",
+   "id": "msig-travel-easy-plus",
     "title": "MSIG Travel Easy Plus",
     "desc": "แผนยอดนิยม ยื่นวีซ่าได้ทั่วโลก บริการฉุกเฉิน 24 ชม.",
     "badge": "เดินทางโลก",
@@ -136,7 +136,7 @@
     "fallback": "https://www.tuneprotect.co.th"
   },
   {
-    "id": "axa-travel-inter",
+    "id": "axa-inter-travel",
     "title": "AXA International Travel Insurance",
     "desc": "ประกันเดินทางต่างประเทศ ได้รับการยอมรับจากสถานทูต ยื่นวีซ่าไม่ผ่านคืนเงิน",
     "badge": "ยื่นวีซ่า",
@@ -144,7 +144,7 @@
     "fallback": "https://www.axa.co.th"
   },
   {
-    "id": "axa-travel-domestic",
+    "id": "axa-domestic-travel",
     "title": "AXA Domestic Travel Insurance",
     "desc": "เที่ยวในประเทศอุ่นใจ คุ้มครองอุบัติเหตุและค่ารักษาทั่วไทย",
     "badge": "ในประเทศ",
