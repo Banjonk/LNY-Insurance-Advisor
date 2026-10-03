@@ -3,7 +3,7 @@ const path = require('path');
 const https = require('https');
 
 // 1. อ่านไฟล์ข้อมูลของ Insurance Advisor โดยเฉพาะ
-const jsonPath = path.join(__dirname, '../web/data/affiliate_products.json');
+const jsonPath = path.join(__dirname, '../data/affiliate_products.json');
 let products = [];
 
 try {
