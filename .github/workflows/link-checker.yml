@@ -22,6 +22,6 @@ jobs:
 
       - name: 3. สั่งรันสคริปต์สแกนลิงก์ประกัน
         env:
-          LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
         run: node scripts/check_links.js
