@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// 1. อ่านไฟล์ข้อมูล affiliate_products.json
+// 1. อ่านไฟล์ข้อมูลของ Insurance Advisor โดยเฉพาะ
 const jsonPath = path.join(__dirname, '../web/data/affiliate_products.json');
 let products = [];
 
@@ -10,11 +10,11 @@ try {
     const rawData = fs.readFileSync(jsonPath, 'utf8');
     products = JSON.parse(rawData);
 } catch (err) {
-    console.error('❌ ไม่พบหรืออ่านไฟล์ JSON ไม่สำเร็จ:', err.message);
-    process.exit(1);
+    console.error('❌ ไม่พบหรืออ่านไฟล์ JSON ประกันไม่สำเร็จ:', err.message);
+    process.exit(1); // ส่งสัญญาณ Error ให้ GitHub ยิงอีเมลแจ้งเตือน
 }
 
-// 2. ฟังก์ชันตรวจสอบสถานะของ URL (เช็กทั้ง Status Code และ URL ปลายทางหลัง Redirect)
+// 2. ฟังก์ชันตรวจสอบสถานะของ URL แผนประกัน
 function checkUrl(url) {
     return new Promise((resolve) => {
         if (!url || url === '#' || !url.startsWith('http')) {
@@ -26,15 +26,15 @@ function checkUrl(url) {
             const statusCode = res.statusCode;
             const redirectUrl = res.headers.location || '';
 
-            // ถ้าเป็น 404, 410 หรือ 5xx ถือว่าลิงก์เสีย
+            // ถ้า HTTP 400 ขึ้นไปถือว่าลิงก์เสีย
             if (statusCode >= 400) {
                 return resolve({ status: statusCode, finalUrl: redirectUrl || url, isDead: true, reason: `HTTP ${statusCode}` });
             }
 
-            // ถ้าโดน Redirect ไปหน้าปิดแคมเปญ หรือหน้าหลักที่ไม่ใช่ปลายทางเดิม
+            // ดักจับหน้าแคมเปญประกันที่หมดอายุหรือถูกปิด
             const lowerRedirect = redirectUrl.toLowerCase();
             if (lowerRedirect.includes('campaign_ended') || lowerRedirect.includes('closed') || lowerRedirect.includes('expired')) {
-                return resolve({ status: statusCode, finalUrl: redirectUrl, isDead: true, reason: 'แคมเปญหมดอายุ (Redirected)' });
+                return resolve({ status: statusCode, finalUrl: redirectUrl, isDead: true, reason: 'แคมเปญประกันหมดอายุ (Redirected)' });
             }
 
             resolve({ status: statusCode, finalUrl: redirectUrl || url, isDead: false });
@@ -52,26 +52,18 @@ function checkUrl(url) {
 }
 
 // 3. ฟังก์ชันยิงแจ้งเตือนผ่าน LINE Messaging API
-async function sendLineAlert(deadItems) {
+function pushLineMessage(textMessage) {
     const channelToken = process.env.LINE_CHANNEL_ACCESS_TOKEN;
     const userId = process.env.LINE_USER_ID;
 
     if (!channelToken || !userId) {
-        console.warn('⚠️ ข้ามการส่ง LINE: ไม่ได้ตั้งค่า LINE_CHANNEL_ACCESS_TOKEN หรือ LINE_USER_ID ใน Secrets');
-        return;
+        console.warn('⚠️ ข้ามการส่ง LINE: ไม่ได้ตั้งค่า Secrets ใน GitHub');
+        return Promise.resolve();
     }
-
-    let messageText = `⚠️ แจ้งเตือน: พบลิงก์ Affiliate มีปัญหา (${deadItems.length} รายการ)\n\n`;
-    deadItems.forEach((item, index) => {
-        messageText += `${index + 1}. ${item.title}\n`;
-        messageText += `• ลิงก์: ${item.link}\n`;
-        messageText += `• ปัญหา: ${item.reason}\n\n`;
-    });
-    messageText += `💡 เข้า Accesstrade เพื่อขอรับลิงก์ใหม่ และนำมาอัปเดตใน affiliate_products.json ได้เลยครับ`;
 
     const postData = JSON.stringify({
         to: userId,
-        messages: [{ type: 'text', text: messageText }]
+        messages: [{ type: 'text', text: textMessage }]
     });
 
     const options = {
@@ -87,11 +79,11 @@ async function sendLineAlert(deadItems) {
 
     return new Promise((resolve) => {
         const req = https.request(options, (res) => {
-            console.log(`📡 ส่งแจ้งเตือน LINE แล้ว สถานะ: ${res.statusCode}`);
+            console.log(`📡 ส่ง LINE สำเร็จ สถานะ: ${res.statusCode}`);
             resolve();
         });
         req.on('error', (e) => {
-            console.error('❌ ส่ง LINE ไม่สำเร็จ:', e.message);
+            console.error('❌ ส่ง LINE ล้มเหลว:', e.message);
             resolve();
         });
         req.write(postData);
@@ -99,26 +91,35 @@ async function sendLineAlert(deadItems) {
     });
 }
 
-// 4. เริ่มประมวลผลสแกนทุกลิงก์
+// 4. สแกนและสรุปผล
 async function run() {
-    console.log(`🔍 เริ่มตรวจสอบลิงก์ Affiliate ทั้งหมด ${products.length} รายการ...`);
+    console.log(`🔍 [LNY Insurance] เริ่มตรวจสอบแผนประกันทั้งหมด ${products.length} รายการ...`);
     const deadItems = [];
 
     for (const prod of products) {
+        const title = prod.title || prod.id || 'แผนประกัน';
         const res = await checkUrl(prod.link);
+
         if (res.isDead) {
-            console.log(`❌ พบปัญหา: [${prod.title}] -> ${res.reason}`);
-            deadItems.push({ title: prod.title, link: prod.link, reason: res.reason });
+            console.log(`❌ พบปัญหา: [${title}] -> ${res.reason}`);
+            deadItems.push({ title: title, link: prod.link, reason: res.reason });
         } else {
-            console.log(`✅ ปกติ: [${prod.title}]`);
+            console.log(`✅ ปกติ: [${title}]`);
         }
     }
 
     if (deadItems.length > 0) {
-        console.log(`\n🚨 สรุป: มีลิงก์เสียทั้งหมด ${deadItems.length} รายการ กำลังส่ง LINE...`);
-        await sendLineAlert(deadItems);
+        let msg = `⚠️ [LNY Insurance Advisor] พบลิงก์มีปัญหา (${deadItems.length} รายการ)\n\n`;
+        deadItems.forEach((item, index) => {
+            msg += `${index + 1}. ${item.title}\n`;
+            msg += `• ลิงก์: ${item.link}\n`;
+            msg += `• ปัญหา: ${item.reason}\n\n`;
+        });
+        msg += `💡 นำลิงก์ใหม่มาอัปเดตใน affiliate_products.json ได้เลยครับ`;
+        await pushLineMessage(msg);
     } else {
-        console.log('\n🎉 เยี่ยมมาก! ลิงก์ทุกตัวยังใช้งานได้ปกติ ไม่มีแคมเปญใดถูกปิด');
+        const heartbeatMsg = `🟢 [LNY Insurance Advisor]\n📅 รายงานเช้าวันจันทร์: สแกนครบ ${products.length} รายการ\n✨ ลิงก์สมบูรณ์พร้อมรับเงินครับ!`;
+        await pushLineMessage(heartbeatMsg);
     }
 }
 
