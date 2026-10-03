@@ -604,7 +604,7 @@ async function loadInsurancePlans() {
     if (!select) return;
 
     try {
-        const response = await fetch('/data/aia_plans.json');
+        const response = await fetch('data/aia_plans.json');
         if (!response.ok) throw new Error('โหลดไฟล์แผนประกันไม่สำเร็จ');
         
         allInsurancePlans = await response.json();
