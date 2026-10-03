@@ -94,5 +94,61 @@
     "badge": "ประหยัด",
     "link": "https://atth.me/002c5k002anw",
     "fallback": "https://www.msig-thai.com"
+  },
+  {
+    "id": "anc-motor-monthly",
+    "title": "ประกันรถยนต์รายเดือน ANC Broker",
+    "desc": "แผนผ่อนสบายรายเดือน ไม่ต้องจ่ายเงินก้อน คุ้มครองทันที",
+    "badge": "รายเดือน",
+    "link": "https://atth.me/008dlb002anw",
+    "fallback": "https://www.ancbroker.com"
+  },
+  {
+    "id": "msig-travel-easy",
+    "title": "MSIG Travel Easy Plus",
+    "desc": "แผนยอดนิยม ยื่นวีซ่าได้ทั่วโลก บริการฉุกเฉิน 24 ชม.",
+    "badge": "เดินทางโลก",
+    "link": "https://atth.me/000bqk002anw",
+    "fallback": "https://www.msig-thai.com"
+  },
+  {
+    "id": "scb-protect-travel",
+    "title": "SCB Protect ประกันเดินทางต่างประเทศ",
+    "desc": "เที่ยวสบายใจ คุ้มครองอุบัติเหตุ ไฟลท์ยกเลิก ค่ารักษาพยาบาล",
+    "badge": "เดินทาง",
+    "link": "https://atth.me/00db8m002anw",
+    "fallback": "https://www.scbprotect.co.th"
+  },
+  {
+    "id": "gettgo-travel",
+    "title": "Gettgo ประกันเดินทาง",
+    "desc": "ศูนย์รวมแผนประกันเดินทาง เปรียบเทียบราคาได้หลากหลาย รวดเร็ว",
+    "badge": "เปรียบเทียบ",
+    "link": "https://atth.me/000qc1002anw",
+    "fallback": "https://gettgo.com"
+  },
+  {
+    "id": "tune-protect-travel",
+    "title": "Tune Protect Travel Insurance",
+    "desc": "เบี้ยประหยัด คุ้มครองครบ จบไวผ่านออนไลน์ใน 5 นาที",
+    "badge": "ประหยัด",
+    "link": "https://atth.me/00bhg3002anw",
+    "fallback": "https://www.tuneprotect.co.th"
+  },
+  {
+    "id": "axa-travel-inter",
+    "title": "AXA International Travel Insurance",
+    "desc": "ประกันเดินทางต่างประเทศ ได้รับการยอมรับจากสถานทูต ยื่นวีซ่าไม่ผ่านคืนเงิน",
+    "badge": "ยื่นวีซ่า",
+    "link": "https://atth.me/00e49z002anw",
+    "fallback": "https://www.axa.co.th"
+  },
+  {
+    "id": "axa-travel-domestic",
+    "title": "AXA Domestic Travel Insurance",
+    "desc": "เที่ยวในประเทศอุ่นใจ คุ้มครองอุบัติเหตุและค่ารักษาทั่วไทย",
+    "badge": "ในประเทศ",
+    "link": "https://atth.me/00424e002anw",
+    "fallback": "https://www.axa.co.th"
   }
 ]
