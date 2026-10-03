@@ -420,7 +420,7 @@ async function calculatePremium() {
     }
 
     // 3. ปรับ Path ป้องกัน /data/ ซ้อน
-    const fetchPath = rateFile.startsWith('/') ? rateFile : ('/data/' + rateFile);
+    const fetchPath = rateFile.startsWith('/') ? rateFile : ('data/' + rateFile);
 
     try {
         const response = await fetch(fetchPath);
