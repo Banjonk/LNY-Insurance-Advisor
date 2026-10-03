@@ -1,25 +1,26 @@
-name: Affiliate Link Health Checker
+name: Affiliate Link Health Checker (Insurance Advisor)
 
 on:
   schedule:
     # รันอัตโนมัติทุกวันจันทร์ เวลา 09:00 น. ตามเวลาไทย (UTC 02:00)
     - cron: '0 2 * * 1'
-  # รองรับการกดปุ่มสั่งรันด้วยตัวเองผ่านหน้าเว็บ GitHub (Manual trigger)
+  # รองรับการกดรันด้วยตนเองผ่านหน้าเว็บ GitHub
   workflow_dispatch:
 
 jobs:
-  check-links:
+  check-insurance-links:
     runs-on: ubuntu-latest
+
     steps:
-      - name: ดึงโค้ดโปรเจกต์
+      - name: 1. ดึงโค้ดโปรเจกต์ Insurance
         uses: actions/checkout@v4
 
-      - name: ติดตั้ง Node.js
+      - name: 2. เตรียมระบบ Node.js เวอร์ชัน 18
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: สั่งรันสคริปต์สแกนลิงก์
+      - name: 3. สั่งรันสคริปต์สแกนลิงก์ประกัน
         env:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
